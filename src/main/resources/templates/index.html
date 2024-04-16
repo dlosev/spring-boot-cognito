@@ -1,0 +1,20 @@
+<div xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div sec:authorize="isAuthenticated()">
+        <div class="box">
+            Hello, <strong th:text="${#authentication.principal.attributes['email']}"></strong>!
+        </div>
+        <br/>
+        <div class="box">
+            <form class="form-signin" method="post" action="/logout">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Log Out</button>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            </form>
+        </div>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <div class="box">
+            <a class="button login is-primary" th:href="@{/oauth2/authorization/cognito}">
+                Log in with Amazon Cognito</a>
+        </div>
+    </div>
+</div>

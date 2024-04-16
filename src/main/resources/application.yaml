@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: spring-boot-cognito
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            clientId: ${COGNITO_CLIENT_ID}
+            clientSecret: ${COGNITO_CLIENT_SECRET}
+            scope: openid
+            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            clientName: cognito-mfa
+            authorizationGrantType: authorization_code
+        provider:
+          cognito:
+            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_HdTmCwKwv
+
+aws:
+  cognito:
+    logout:
+      url: https://mfa-example.auth.us-east-1.amazoncognito.com/logout
+      redirectUrl: http://localhost:8080
